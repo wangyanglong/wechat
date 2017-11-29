@@ -6,13 +6,18 @@ import (
 
 	"wechat/view"
 
+	"flag"
+
 	"github.com/facebookgo/grace/gracehttp"
 	"github.com/gin-gonic/gin"
 	"github.com/jie123108/glog"
 )
 
 func main() {
-	addr := "0.0.0.0:80"
+	flag.Parse()
+	defer glog.Flush()
+
+	addr := "127.0.0.1:81"
 	r := gin.Default()
 	r.GET("/wx", view.VerifyServer)
 
