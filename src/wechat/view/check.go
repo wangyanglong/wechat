@@ -48,6 +48,10 @@ func CheckRequestBody(c *gin.Context, obj interface{}) bool {
 	return ret
 }
 
+func CheckGetParam(c *gin.Context, key string) string {
+	return c.Request.Form.Get(key)
+}
+
 type VerifyDataReq struct {
 	Signature string `json:"signature"`
 	Time      string `json:"timestamp"`
