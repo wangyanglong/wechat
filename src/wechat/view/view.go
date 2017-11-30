@@ -20,12 +20,12 @@ func str2sha1(data string) string {
 
 func VerifyServer(c *gin.Context) {
 	glog.Infof("wechat VerifyServer")
+	c.Request.ParseForm()
 	data := new(VerifyDataReq)
-	ret := CheckRequestBody(c, data)
-	if !ret {
-		SetResp(c, 400, gin.H{})
-		return
-	}
+	data.EchoStr = c.Request.Form["echostr"][0]
+	data.Signature = c.Request.Form["signature"][0]
+	data.Nonce = c.Request.Form["nonce"][0]
+	data.Time = c.Request.Form["timestamp"][0]
 	tmps := []string{myToken, data.Time, data.Nonce}
 	sort.Strings(tmps)
 	tmpStr := tmps[0] + tmps[1] + tmps[2]
