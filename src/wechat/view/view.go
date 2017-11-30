@@ -10,7 +10,7 @@ import (
 	"github.com/jie123108/glog"
 )
 
-var myToken string = "my token"
+var myToken string = "myToken"
 
 func str2sha1(data string) string {
 	t := sha1.New()
