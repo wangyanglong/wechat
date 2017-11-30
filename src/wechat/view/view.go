@@ -30,7 +30,7 @@ func VerifyServer(c *gin.Context) {
 	sort.Strings(tmps)
 	tmpStr := tmps[0] + tmps[1] + tmps[2]
 	if str2sha1(tmpStr) == data.Signature {
-		SetResp(c, 200, gin.H{})
+		c.String(200, data.EchoStr)
 		return
 	} else {
 		SetResp(c, 400, gin.H{})
